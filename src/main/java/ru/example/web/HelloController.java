@@ -5,13 +5,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Controller
-
+//@Controller
 public class HelloController {
     @RequestMapping("/")
 
     public String printWelcone(HttpServletRequest request) {
+        
         request.setAttribute("hello", "Hello this is SPRING WEBMVC application");
+
         return "index";
     }
 }
