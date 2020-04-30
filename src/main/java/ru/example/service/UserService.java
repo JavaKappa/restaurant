@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.example.model.User;
 import ru.example.repository.UserRepository;
-@Service
 
+@Service
 public class UserService {
     private final UserRepository repository;
-
+    @Autowired
     public UserService(UserRepository repository) {
         this.repository = repository;
     }

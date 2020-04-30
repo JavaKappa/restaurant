@@ -10,9 +10,14 @@ import ru.example.web.user.UserRestController;
  */
 public class App {
     public static void main(String[] args) {
-        try (ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml")) {
+        try (ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml")) {
             UserRestController controller = appCtx.getBean(UserRestController.class);
-            controller.delete(0);
+            User us = new User();
+            us.setId(1);
+            us.setName("Igor");
+            us.setVote_access(true);
+            controller.save(us);
+            System.out.println(controller.get(us.getId()));
         }
     }
 }
