@@ -10,8 +10,9 @@ import javax.persistence.*;
 
 public abstract class AbstractBaseEntity {
     @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "id")
+//    //@Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     protected Integer id;
 
     public AbstractBaseEntity(Integer id) {
@@ -27,5 +28,8 @@ public abstract class AbstractBaseEntity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+    public boolean isNew() {
+        return id == null;
     }
 }

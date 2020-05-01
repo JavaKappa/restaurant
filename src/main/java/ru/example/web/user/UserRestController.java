@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import ru.example.model.User;
 import ru.example.service.UserService;
+
+import java.util.List;
+
 @Controller
 public class UserRestController {
     @Autowired
@@ -12,6 +15,7 @@ public class UserRestController {
     public UserRestController(UserService userService) {
         this.userService = userService;
     }
+
     public User save(User user) {
         return userService.save(user);
     }
@@ -24,7 +28,11 @@ public class UserRestController {
         return userService.update(user);
     }
 
-    public void delete(int id) {
-        userService.delete(id);
+    public boolean delete(int id) {
+        return userService.delete(id);
+    }
+
+    public List<User> getAll() {
+        return userService.getAll();
     }
 }

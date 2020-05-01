@@ -2,7 +2,6 @@ package ru.example.model;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotBlank;
 
 /**
  * Капу пк
@@ -10,8 +9,7 @@ import javax.validation.constraints.NotBlank;
  */
 @MappedSuperclass
 public class AbstractNamedEntity extends AbstractBaseEntity {
-    @Column(name = "name")
-    @NotBlank
+    @Column(name = "name", unique = true, nullable = false)
     protected String name;
 
     public String getName() {

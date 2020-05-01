@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ru.example.model.User;
 import ru.example.repository.UserRepository;
 
+import java.util.List;
+
 @Service
 public class UserService {
     private final UserRepository repository;
@@ -25,7 +27,11 @@ public class UserService {
         return repository.save(user);
     }
 
-    public void delete(int id) {
-        repository.delete(id);
+    public boolean delete(int id) {
+        return repository.delete(id);
+    }
+
+    public List<User> getAll() {
+        return repository.getAll();
     }
 }

@@ -5,6 +5,7 @@ import ru.example.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -32,12 +33,15 @@ public class JpaUserRepository implements UserRepository{
 
 
     @Override
+    @Transactional
     public boolean delete(int id) {
-        return false;
+        Query query = em.createQuery("DELETE FROM User u WHERE u.id=:id");
+        return query.setParameter("id", id).executeUpdate() != 0;
     }
 
     @Override
     public List<User> getAll() {
-        return null;
+        Query query = em.createQuery("SELECT u FROM User u");
+        return query.getResultList();
     }
 }

@@ -1,32 +1,21 @@
 package ru.example.model;
 
-import org.hibernate.annotations.NamedQueries;
-import org.hibernate.annotations.NamedQuery;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  * Капу пк
  * 21.03.2020
  */
-//@NamedQueries({
-//    @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
-//        @NamedQuery(name = User.ALL_SORTED, query = "SELECT u FROM User u ORDER BY u.getName")
-//})
+
 @Entity
-@Table(name = "USERS")
+@Table(name="users")
 public class User extends AbstractNamedEntity {
-    @Column(name = "vote_acsess")
-    @NotNull
-    private boolean vote_access = true;
 
-    public User() {
-    }
+    private Boolean vote_access = true;
 
-    public boolean isVote_access() {
+    public boolean getVote_access() {
         return vote_access;
     }
 
@@ -34,7 +23,17 @@ public class User extends AbstractNamedEntity {
         this.vote_access = vote_access;
     }
 
-    public boolean isNew() {
-        return id == null;
+    @Override
+    public String toString() {
+        return "User{" +
+                "vote_access=" + vote_access +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                '}';
     }
+
+    public User() {
+    }
+
+
 }
