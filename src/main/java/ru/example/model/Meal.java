@@ -1,12 +1,13 @@
 package ru.example.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "meals")
 public class Meal extends AbstractNamedEntity{
     private double price;
+    @ManyToOne
+    private Menu menu;
 
     public double getPrice() {
         return price;

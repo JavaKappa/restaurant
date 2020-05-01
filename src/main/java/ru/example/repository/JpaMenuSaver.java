@@ -2,24 +2,25 @@ package ru.example.repository;
 
 import org.springframework.stereotype.Repository;
 import ru.example.model.Meal;
+import ru.example.model.Menu;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 @Repository
-public class JpaMealSaver {
+public class JpaMenuSaver {
     @PersistenceContext
     private EntityManager em;
 
     @Transactional
-    public Meal save(Meal meal) {
-        if (meal.isNew()) {
-            em.persist(meal);
+    public Menu save(Menu menu) {
+        if (menu.isNew()) {
+            em.persist(menu);
         } else {
-            em.merge(meal);
+            em.merge(menu);
         }
-        return meal;
+        return menu;
     }
 
 }
