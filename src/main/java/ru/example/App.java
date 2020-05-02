@@ -4,8 +4,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.example.model.Meal;
 import ru.example.model.Menu;
-import ru.example.repository.JpaMenuSaver;
-import ru.example.web.user.UserRestController;
+import ru.example.model.Restaurant;
+import ru.example.repository.JpaRestaurantRepository;
+import ru.example.web.user.UserController;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,21 +18,26 @@ import java.util.List;
 public class App {
     public static void main(String[] args) {
         try (ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml")) {
-            UserRestController controller = appCtx.getBean(UserRestController.class);
+            UserController controller = appCtx.getBean(UserController.class);
 
-            JpaMenuSaver ms = appCtx.getBean(JpaMenuSaver.class);
+            JpaRestaurantRepository ms = appCtx.getBean(JpaRestaurantRepository.class);
 
             List<Meal> meals = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
                 Meal meal = new Meal();
-                meal.setName("menuItem + " + i);
+                meal.setName("meal " + i);
+                meal.setPrice(i);
                 meals.add(meal);
             }
 
             Menu menu = new Menu();
             menu.setMealList(meals);
             menu.setDate(LocalDate.now());
-            ms.save(menu);
+
+            Restaurant restaurant = new Restaurant();
+            restaurant.setName("DOBRINYA");
+            restaurant.setMenu(menu);
+            ms.save(restaurant);
         }
     }
 }

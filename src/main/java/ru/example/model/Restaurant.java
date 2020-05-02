@@ -3,11 +3,10 @@ package ru.example.model;
 
 import javax.persistence.*;
 
-//@Entity
-//@Table(name = "restaurants")
+@Entity
+@Table(name = "restaurants")
 public class Restaurant extends AbstractNamedEntity {
-//    @OneToOne
-//    @JoinColumn("menu")
+    @OneToOne(cascade = CascadeType.ALL)
     private Menu menu;
 
     public Menu getMenu() {

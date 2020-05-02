@@ -8,11 +8,11 @@ import ru.example.service.UserService;
 import java.util.List;
 
 @Controller
-public class UserRestController {
-    @Autowired
-    private UserService userService;
+public class UserController {
+    private final UserService userService;
 
-    public UserRestController(UserService userService) {
+    @Autowired
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 

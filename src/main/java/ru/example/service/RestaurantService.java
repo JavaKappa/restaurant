@@ -16,6 +16,4 @@ public class RestaurantService {
     public Restaurant get(int id) {
         return repository.get(id);
     }
-
-
 }
