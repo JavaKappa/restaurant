@@ -2,19 +2,32 @@ package ru.example.model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "restaurants")
 public class Restaurant extends AbstractNamedEntity {
-    @OneToOne(cascade = CascadeType.ALL)
-    private Menu menu;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "restaurant_id")
+    private List<Menu> menus;
 
-    public Menu getMenu() {
-        return menu;
+    public Restaurant() {
+        if (menus == null) {
+            menus = new ArrayList<>();
+        }
     }
 
-    public void setMenu(Menu menu) {
-        this.menu = menu;
+    public List<Menu> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(List<Menu> menus) {
+        this.menus = menus;
+    }
+
+    public void addMenu(Menu menu) {
+        menus.add(menu);
     }
 
 }

@@ -5,8 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.example.model.Meal;
 import ru.example.model.Menu;
 import ru.example.model.Restaurant;
-import ru.example.repository.JpaRestaurantRepository;
-import ru.example.web.user.UserController;
+import ru.example.web.restaurant.RestaurantController;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,9 +17,7 @@ import java.util.List;
 public class App {
     public static void main(String[] args) {
         try (ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml")) {
-            UserController controller = appCtx.getBean(UserController.class);
-
-            JpaRestaurantRepository ms = appCtx.getBean(JpaRestaurantRepository.class);
+            RestaurantController rs = appCtx.getBean(RestaurantController.class);
 
             List<Meal> meals = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
@@ -36,8 +33,18 @@ public class App {
 
             Restaurant restaurant = new Restaurant();
             restaurant.setName("DOBRINYA");
-            restaurant.setMenu(menu);
-            ms.save(restaurant);
+            restaurant.addMenu(menu);
+            rs.save(restaurant);
+
+
+            List<Restaurant> restaurants = rs.getAllRestaurantsVsNoNullMenu();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(restaurant);
+            System.out.println();
+            System.out.println();
+            System.out.println();
         }
     }
 }

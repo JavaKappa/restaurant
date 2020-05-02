@@ -10,8 +10,8 @@ public class Menu extends AbstractBaseEntity {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "menu_id")
     private List<Meal> mealList;
-//    @OneToOne
-//    private Restaurant restaurant;
+    @ManyToOne
+    private Restaurant restaurant;
 
 
 //    public Restaurant getRestaurant() {

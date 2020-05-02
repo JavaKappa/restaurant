@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ru.example.model.Restaurant;
 import ru.example.repository.RestaurantRepository;
 
+import java.util.List;
+
 @Service
 public class RestaurantService {
     private final RestaurantRepository repository;
@@ -15,5 +17,13 @@ public class RestaurantService {
 
     public Restaurant get(int id) {
         return repository.get(id);
+    }
+
+    public List<Restaurant> getAllRestaurantsVsNoNullMenu() {
+        return repository.getAllWithNoNullMenu();
+    }
+
+    public Restaurant save(Restaurant restaurant) {
+        return repository.save(restaurant);
     }
 }
