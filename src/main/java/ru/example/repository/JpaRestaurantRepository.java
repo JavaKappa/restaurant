@@ -1,6 +1,7 @@
 package ru.example.repository;
 
 import org.springframework.stereotype.Repository;
+import ru.example.model.Menu;
 import ru.example.model.Restaurant;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,8 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Repository
 public class JpaRestaurantRepository implements RestaurantRepository{
@@ -44,9 +47,11 @@ public class JpaRestaurantRepository implements RestaurantRepository{
     @Transactional
     public List<Restaurant> getAllWithNoNullMenu() {
         //TODO
-        Query query = em.createQuery("SELECT Restaurant FROM Restaurant r");
+        Query query = em.createQuery("select m from Menu m where m.date=:date");
         query.setParameter("date", LocalDate.now());
-        return query.getResultList();
+        List<Menu> currentMenuList = (List<Menu>) query.getResultList();
+        List<Restaurant> restaurantList = currentMenuList.stream().map(Menu::getRestaurant).collect(Collectors.toList());
+        return restaurantList;
     }
 
 }

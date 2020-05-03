@@ -31,7 +31,6 @@ public class User extends AbstractNamedEntity {
                 ", id=" + id +
                 '}';
     }
-
     public User() {
     }
 
