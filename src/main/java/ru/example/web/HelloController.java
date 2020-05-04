@@ -1,18 +1,16 @@
 package ru.example.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
 
-//@Controller
+@Controller
 public class HelloController {
-    @RequestMapping("/")
-
-    public String printWelcone(HttpServletRequest request) {
-        
-        request.setAttribute("hello", "Hello this is SPRING WEBMVC application");
-
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String printWelcome(Model model) {
+        model.addAttribute("hello", "ROT VASH POLOSKAl");
         return "index";
     }
 }
