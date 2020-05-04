@@ -8,7 +8,7 @@ import javax.persistence.MappedSuperclass;
  * 21.03.2020
  */
 @MappedSuperclass
-public class AbstractNamedEntity extends AbstractBaseEntity {
+public abstract class AbstractNamedEntity extends AbstractBaseEntity {
     @Column(name = "name", unique = true, nullable = false)
     protected String name;
 

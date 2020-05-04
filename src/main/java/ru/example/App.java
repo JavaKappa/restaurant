@@ -7,10 +7,7 @@ import ru.example.model.Menu;
 import ru.example.model.Restaurant;
 import ru.example.web.restaurant.RestaurantController;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.temporal.TemporalAmount;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +24,7 @@ public class App {
             Menu menu = new Menu();
             List<Meal> meals = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
-                Meal meal = new Meal();
-                meal.setName("meal " + i);
-                meal.setPrice(i);
+                Meal meal = new Meal("meal " + i, i);
                 meals.add(meal);
             }
             menu.setMealList(meals);
@@ -44,11 +39,20 @@ public class App {
             restaurant1.addMenu(menu1);
             rs.save(restaurant1);
 
+            Restaurant restaurant3 = new Restaurant();
+            restaurant3.setName("Leshiy_pub");
+            restaurant3.addMeal("PLOV",34, LocalDate.now());
+            restaurant3.addMeal("sup", 44,  LocalDate.now());
+
+            rs.save(restaurant3);
+
+
+
             List<Restaurant> restaurants = rs.getAllRestaurantsVsNoNullMenu();
             System.out.println();
             System.out.println();
             System.out.println();
-            System.out.println(restaurants);
+            restaurants.forEach((m)-> System.out.println(m.getId() + m.getName() ));
             System.out.println();
             System.out.println();
             System.out.println();

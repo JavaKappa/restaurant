@@ -9,6 +9,14 @@ public class Meal extends AbstractNamedEntity{
     @ManyToOne
     private Menu menu;
 
+    public Meal(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public Meal() {
+    }
+
     public double getPrice() {
         return price;
     }

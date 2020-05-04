@@ -2,6 +2,7 @@ package ru.example.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,7 +10,7 @@ public class Menu extends AbstractBaseEntity {
     private LocalDate date;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "menu_id")
-    private List<Meal> mealList;
+    private List<Meal> mealList = new ArrayList<>();
     @ManyToOne
     private Restaurant restaurant;
 
@@ -37,5 +38,10 @@ public class Menu extends AbstractBaseEntity {
 
     public void setMealList(List<Meal> mealList) {
         this.mealList = mealList;
+    }
+
+    public Meal addMeal(Meal meal) {
+        mealList.add(meal);
+        return meal;
     }
 }

@@ -2,6 +2,7 @@ package ru.example.model;
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,13 +11,8 @@ import java.util.List;
 public class Restaurant extends AbstractNamedEntity {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id")
-    private List<Menu> menus;
+    private List<Menu> menus = new ArrayList<>();
 
-    public Restaurant() {
-        if (menus == null) {
-            menus = new ArrayList<>();
-        }
-    }
 
     public List<Menu> getMenus() {
         return menus;
@@ -28,6 +24,20 @@ public class Restaurant extends AbstractNamedEntity {
 
     public void addMenu(Menu menu) {
         menus.add(menu);
+    }
+
+    public Meal addMeal(String  mealName, double mealPrice, LocalDate dateMenu) {
+        Meal meal = new Meal(mealName, mealPrice);
+        Menu m = menus.stream()
+                .filter(menu -> menu.getDate().equals(dateMenu))
+                .findFirst().orElse(null);
+        if (m == null) {
+            m = new Menu();
+            m.setDate(dateMenu);
+            addMenu(m);
+        }
+        m.addMeal(meal);
+        return meal;
     }
 
 }
