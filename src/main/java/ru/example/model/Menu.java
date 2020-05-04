@@ -1,5 +1,8 @@
 package ru.example.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,6 +13,7 @@ public class Menu extends AbstractBaseEntity {
     private LocalDate date;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "menu_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Meal> mealList = new ArrayList<>();
     @ManyToOne
     private Restaurant restaurant;

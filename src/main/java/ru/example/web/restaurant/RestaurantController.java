@@ -27,4 +27,8 @@ public class RestaurantController {
     public Restaurant save(Restaurant restaurant) {
         return service.save(restaurant);
     }
+
+    public boolean delete(int id) {
+        return service.delete(id);
+    }
 }

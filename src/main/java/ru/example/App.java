@@ -46,12 +46,13 @@ public class App {
 
             rs.save(restaurant3);
 
-
+            rs.delete(1);
 
             List<Restaurant> restaurants = rs.getAllRestaurantsVsNoNullMenu();
             System.out.println();
             System.out.println();
             System.out.println();
+            System.out.println(restaurant.getId() + restaurant1.getId());
             restaurants.forEach((m)-> System.out.println(m.getId() + m.getName() ));
             System.out.println();
             System.out.println();

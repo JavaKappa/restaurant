@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class JpaRestaurantRepository implements RestaurantRepository{
+public class JpaRestaurantRepository implements RestaurantRepository {
     @PersistenceContext
     private EntityManager em;
 
@@ -34,8 +34,11 @@ public class JpaRestaurantRepository implements RestaurantRepository{
     }
 
     @Override
+    @Transactional
     public boolean delete(int id) {
-        return false;
+        return em.createQuery("DELETE from Restaurant r where r.id=:id")
+                .setParameter("id", id)
+                .executeUpdate() != 0;
     }
 
     @Override
