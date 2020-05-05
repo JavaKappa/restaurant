@@ -3,15 +3,15 @@ package ru.example.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.example.model.Restaurant;
-import ru.example.repository.RestaurantRepository;
+import ru.example.repository.JpaRestaurantRepository;
 
 import java.util.List;
 
 @Service
 public class RestaurantService {
-    private final RestaurantRepository repository;
+    private final JpaRestaurantRepository repository;
     @Autowired
-    public RestaurantService(RestaurantRepository repository) {
+    public RestaurantService(JpaRestaurantRepository repository) {
         this.repository = repository;
     }
 

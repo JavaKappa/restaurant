@@ -10,12 +10,11 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-public class JpaUserRepository implements UserRepository{
+public class JpaUserRepository {
     @PersistenceContext
     private EntityManager em;
 
 
-    @Override
     @Transactional
     public User save(User user) {
         if (user.isNew()) {
@@ -26,20 +25,17 @@ public class JpaUserRepository implements UserRepository{
         }
     }
 
-    @Override
     public User get(int id) {
         return em.find(User.class, id);
     }
 
 
-    @Override
     @Transactional
     public boolean delete(int id) {
         Query query = em.createQuery("DELETE FROM User u WHERE u.id=:id");
         return query.setParameter("id", id).executeUpdate() != 0;
     }
 
-    @Override
     public List<User> getAll() {
         Query query = em.createQuery("SELECT u FROM User u");
         return query.getResultList();

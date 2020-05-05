@@ -14,11 +14,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class JpaRestaurantRepository implements RestaurantRepository {
+public class JpaRestaurantRepository {
     @PersistenceContext
     private EntityManager em;
 
-    @Override
     public Restaurant get(int id) {
         return null;
     }
@@ -33,7 +32,6 @@ public class JpaRestaurantRepository implements RestaurantRepository {
         return restaurant;
     }
 
-    @Override
     @Transactional
     public boolean delete(int id) {
         return em.createQuery("DELETE from Restaurant r where r.id=:id")
@@ -41,7 +39,6 @@ public class JpaRestaurantRepository implements RestaurantRepository {
                 .executeUpdate() != 0;
     }
 
-    @Override
     @Transactional
     public List<Restaurant> getAllWithNoNullMenu() {
         Query query = em.createQuery("select m from Menu m where m.date=:date");

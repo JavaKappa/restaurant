@@ -3,7 +3,6 @@ package ru.example.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.example.model.User;
-import ru.example.repository.UserRepository;
 
 import java.util.List;
 
