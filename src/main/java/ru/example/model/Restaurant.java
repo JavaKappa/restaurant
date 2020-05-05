@@ -26,22 +26,7 @@ public class Restaurant extends AbstractNamedEntity {
         this.menus = menus;
     }
 
-    public void addMenu(Menu menu) {
-        menus.add(menu);
+    public boolean addMenu(Menu menu) {
+        return menus.add(menu);
     }
-
-    public Meal addMeal(String  mealName, double mealPrice, LocalDate dateMenu) {
-        Meal meal = new Meal(mealName, mealPrice);
-        Menu m = menus.stream()
-                .filter(menu -> menu.getDate().equals(dateMenu))
-                .findFirst().orElse(null);
-        if (m == null) {
-            m = new Menu();
-            m.setDate(dateMenu);
-            addMenu(m);
-        }
-        m.addMeal(meal);
-        return meal;
-    }
-
 }

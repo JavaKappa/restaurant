@@ -42,11 +42,6 @@ public class JpaRestaurantRepository implements RestaurantRepository {
     }
 
     @Override
-    public List<Restaurant> getAll() {
-        return null;
-    }
-
-    @Override
     @Transactional
     public List<Restaurant> getAllWithNoNullMenu() {
         Query query = em.createQuery("select m from Menu m where m.date=:date");

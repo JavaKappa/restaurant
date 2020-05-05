@@ -13,5 +13,6 @@
 <body>
     <h1>HelloWorld</h1>
     <h2>RAKI V ATAKE</h2>
+    <h2>${hello}</h2>
 </body>
 </html>

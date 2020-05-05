@@ -24,7 +24,7 @@ public class App {
             Menu menu = new Menu();
             List<Meal> meals = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
-                Meal meal = new Meal("meal " + i, i);
+                Meal meal = new Meal("menu " + i, i);
                 meals.add(meal);
             }
             menu.setMealList(meals);
@@ -41,12 +41,12 @@ public class App {
 
             Restaurant restaurant3 = new Restaurant();
             restaurant3.setName("Leshiy_pub");
-            restaurant3.addMeal("PLOV",34, LocalDate.now());
-            restaurant3.addMeal("sup", 44,  LocalDate.now());
-
+            Menu menuForLeshiy = new Menu();
+            menuForLeshiy.setDate(LocalDate.now());
+            menuForLeshiy.addMeal(new Meal("PLOV", 33.33));
+            menuForLeshiy.addMeal(new Meal("LAGMAN", 63.33));
+            restaurant3.addMenu(menuForLeshiy);
             rs.save(restaurant3);
-
-            rs.delete(1);
 
             List<Restaurant> restaurants = rs.getAllRestaurantsVsNoNullMenu();
             System.out.println();

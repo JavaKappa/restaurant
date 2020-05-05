@@ -19,7 +19,6 @@ public class RestaurantController {
     public RestaurantController(RestaurantService service) {
         this.service = service;
     }
-
     public List<Restaurant> getAllRestaurantsVsNoNullMenu() {
         return service.getAllRestaurantsVsNoNullMenu();
     }
