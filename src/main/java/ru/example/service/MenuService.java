@@ -1,7 +1,6 @@
 package ru.example.service;
 
 import org.springframework.stereotype.Service;
-import ru.example.model.Meal;
 import ru.example.model.Menu;
 
 @Service
@@ -12,10 +11,6 @@ public class MenuService {
     }
 
     public Menu addMenu(Menu menu, int restaurantId) {
-        return null;
-    }
-
-    public Meal editMenu(Menu menu, int restaurantId) {
         return null;
     }
 

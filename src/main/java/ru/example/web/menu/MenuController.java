@@ -19,9 +19,9 @@ public class MenuController {
         return service.addMenu(menu, restaurantId);
     }
 
-    public Meal editMenu(Menu menu, int restaurantId) {
-        return service.editMenu(menu, restaurantId);
-    }
+//    public Meal editMenu(Menu menu, int restaurantId) {
+//        return service.editMenu(menu, restaurantId);
+//    }
 
     public boolean removeMenu(int menuId, int restaurantId) {
         return service.removeMenu(menuId, restaurantId);

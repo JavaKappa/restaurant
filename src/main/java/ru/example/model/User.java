@@ -15,6 +15,9 @@ public class User extends AbstractNamedEntity {
 
     private Boolean vote_access = true;
 
+    public User() {
+    }
+
     public boolean getVote_access() {
         return vote_access;
     }
@@ -31,8 +34,7 @@ public class User extends AbstractNamedEntity {
                 ", id=" + id +
                 '}';
     }
-    public User() {
-    }
+   
 
 
 }

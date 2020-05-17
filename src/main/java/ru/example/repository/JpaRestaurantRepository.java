@@ -1,14 +1,13 @@
 package ru.example.repository;
 
 import org.springframework.stereotype.Repository;
-import ru.example.model.Meal;
+import org.springframework.transaction.annotation.Transactional;
 import ru.example.model.Menu;
 import ru.example.model.Restaurant;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +18,7 @@ public class JpaRestaurantRepository {
     private EntityManager em;
 
     public Restaurant get(int id) {
-        return null;
+        return em.find(Restaurant.class, id);
     }
 
     @Transactional
@@ -32,14 +31,12 @@ public class JpaRestaurantRepository {
         return restaurant;
     }
 
-    @Transactional
     public boolean delete(int id) {
         return em.createQuery("DELETE from Restaurant r where r.id=:id")
                 .setParameter("id", id)
                 .executeUpdate() != 0;
     }
 
-    @Transactional
     public List<Restaurant> getAllWithNoNullMenu() {
         Query query = em.createQuery("select m from Menu m where m.date=:date");
         query.setParameter("date", LocalDate.now());

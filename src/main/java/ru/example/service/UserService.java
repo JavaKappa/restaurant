@@ -3,14 +3,15 @@ package ru.example.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.example.model.User;
+import ru.example.repository.JpaUserRepository;
 
 import java.util.List;
 
 @Service
 public class UserService {
-    private final UserRepository repository;
+    private final JpaUserRepository repository;
     @Autowired
-    public UserService(UserRepository repository) {
+    public UserService(JpaUserRepository repository) {
         this.repository = repository;
     }
     public User save(User user) {

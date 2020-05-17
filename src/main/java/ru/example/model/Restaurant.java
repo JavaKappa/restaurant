@@ -5,7 +5,6 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +26,10 @@ public class Restaurant extends AbstractNamedEntity {
     }
 
     public boolean addMenu(Menu menu) {
+        boolean alreadyExists = menus.stream().anyMatch(m -> m.getDate() == menu.getDate());
+        if (alreadyExists) {
+            return false;
+        }
         return menus.add(menu);
     }
 }
